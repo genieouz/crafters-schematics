@@ -1,0 +1,66 @@
+query Fetch<%= classify(name) %>s(
+  $queryConfig: QueryDataConfigInput
+) {
+  fetch<%= classify(name) %>s(
+    queryConfig: $queryConfig
+  ) {
+    pagination {
+      totalItems
+      pageCount
+      pageSize
+      currentPage
+    }
+    results {
+      id
+      title
+      description
+      updatedAt
+      published
+      publishedAt
+      url
+      inSpotlight
+    }
+  }
+}
+
+query Search<%= classify(name) %>s($queryConfig: QueryDataConfigInput) {
+  searchResults: fetch<%= classify(name) %>s(queryConfig: $queryConfig) {
+    pagination {
+      totalItems
+      pageCount
+      pageSize
+      currentPage
+    }
+    results {
+      id
+      nom: title
+    }
+  }
+}
+
+query Fetch<%= classify(name) %>($<%= camelize(name) %>Id: String!) {
+  fetch<%= classify(name) %>(<%= camelize(name) %>Id: $<%= camelize(name) %>Id) {
+    id
+    title
+    description
+    updatedAt
+    published
+    publishedAt
+    url
+    content
+    inSpotlight
+    poster
+  }
+}
+
+mutation Delete<%= classify(name) %>($<%= camelize(name) %>Id: Any!) {
+  delete<%= classify(name) %>(<%= camelize(name) %>Id: $<%= camelize(name) %>Id)
+}
+
+mutation Publish<%= classify(name) %>($<%= camelize(name) %>Id: Any!) {
+  publish<%= classify(name) %>(<%= camelize(name) %>Id: $<%= camelize(name) %>Id)
+}
+
+mutation UnPublish<%= classify(name) %>($<%= camelize(name) %>Id: Any!) {
+  unPublish<%= classify(name) %>(<%= camelize(name) %>Id: $<%= camelize(name) %>Id)
+}

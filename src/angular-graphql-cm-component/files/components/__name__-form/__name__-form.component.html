@@ -1,0 +1,134 @@
+<div class="page-wrapper" fxLayout="column" fxLayoutGap="24px">
+  <span class="goback" fxLayout="row" fxLayoutAlign="start center" appGoBack
+    ><span><mat-icon fxLayoutAlign="start center">arrow_back</mat-icon></span
+    ><span>back</span></span
+  >
+  <div class="container" fxLayout="column" fxLayoutGap="40px">
+    <span class="title">{{ formTitle }}</span>
+    <form
+      [formGroup]="<%= camelize(name) %>Form"
+      class="form-container"
+      fxLayout="column"
+      fxLayoutGap="32px"
+    >
+      <div fxLayout="column" fxLayoutGap="24px">
+        <div
+          fxFlex="50"
+          fxLayout="row wrap"
+          fxLayoutAlign="start center"
+          fxLayoutGap="24px"
+        >
+          <div fxFlex="75" fxLayout="column" fxLayoutGap="8px">
+            <label for="<%= camelize(name) %>-title"
+              >Titre <span class="color-danger">*</span></label
+            >
+            <input
+              formControlName="title"
+              type="text"
+              id="<%= camelize(name) %>-title"
+              class="form-control"
+              placeholder="Title..."
+            />
+          </div>
+          <div fxLayout="column" fxLayoutGap="8px">
+            <mat-slide-toggle formControlName="inSpotlight">
+              <span class="label">Mettre à la une</span>
+            </mat-slide-toggle>
+          </div>
+        </div>
+
+        <div fxLayout="column" fxLayoutGap="8px">
+          <label for="description">Description</label>
+          <textarea
+            formControlName="description"
+            class="form-control"
+            name=""
+            id="description"
+            cols="30"
+            rows="3"
+          ></textarea>
+        </div>
+        <div fxLayout="column" fxLayoutGap="8px">
+          <label for="contenu">Contenu</label>
+          <angular-editor
+            formControlName="content"
+            name="angular-editor"
+            id="contenu"
+            [config]="editorConfig"
+          ></angular-editor>
+        </div>
+      </div>
+      <div fxLayout="column" fxLayoutGap="8px">
+        <span class="label">Publication</span>
+        <div fxLayout="row" fxLayoutGap="12px">
+          <mat-slide-toggle formControlName="published">
+            <span class="label">Cliquez pour publier</span>
+          </mat-slide-toggle>
+        </div>
+      </div>
+      <div fxLayout="column" fxLayoutGap="32px">
+        <span class="title">Autres informations</span>
+        <div fxLayout="column" fxLayoutGap="24px">
+          <div class="form-image">
+            <input
+              type="file"
+              id="hub-image"
+              accept="image/*"
+              (change)="changePoster($event)"
+            />
+            <label for="hub-image" fxLayout="column" fxLayoutGap="8px">
+              <span class="label"
+                >Image <span class="color-danger">*</span></span
+              >
+              <div class="image-container">
+                <img
+                  *ngIf="mediaType === 'image' && mediaPreview"
+                  [src]="mediaPreview"
+                  alt="Image preview"
+                />
+                <video
+                  *ngIf="mediaType === 'video' && mediaPreview"
+                  [src]="mediaPreview"
+                  id="poster"
+                  autoplay
+                  muted
+                >
+                  Your browser does not support the video tag.
+                </video>
+                <div
+                  *ngIf="!mediaPreview"
+                  fxLayout="column"
+                  fxLayoutAlign="center center"
+                  fxLayoutGap="12px"
+                >
+                  <mat-icon>cloud_upload</mat-icon>
+                  <span
+                    fxLayout="column"
+                    fxLayoutAlign="center center"
+                    fxLayoutGap="6px"
+                  >
+                    <span class="label">Upload Image</span>
+                    <span class="image-size"
+                      >Media size must be less than 50MB</span
+                    >
+                  </span>
+                </div>
+              </div>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div
+        class="form-action"
+        fxLayout="row"
+        fxLayoutAlign="end center"
+        fxLayoutGap="24px"
+      >
+        <span class="btn btn-form-cancel" appGoBack>Annuler</span>
+        <button [disabled]="<%= camelize(name) %>Form.invalid" type="submit" (click)="onSubmit()" class="btn btn-form-primary"
+          >Enregistrer</button
+        >
+      </div>
+    </form>
+  </div>
+</div>

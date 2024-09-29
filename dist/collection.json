@@ -1,0 +1,17 @@
+{
+  "$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "schematics": {
+    "angular-graphql-cm-component": {
+      "description": "A blank schematic.",
+      "factory": "./angular-graphql-cm-component/index#angularGraphqlCmComponent"
+    },
+    "nestjs-graphql-cm-module": {
+      "description": "A blank schematic.",
+      "factory": "./nestjs-graphql-cm-module/index#nestjsGraphqlCmModule"
+    },
+    "angular-graphql-fuse-component": {
+      "description": "A blank schematic.",
+      "factory": "./angular-graphql-fuse-component/index#angularGraphqlFuseComponent"
+    }
+  }
+}

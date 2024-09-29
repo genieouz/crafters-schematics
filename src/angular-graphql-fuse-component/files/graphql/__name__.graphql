@@ -1,0 +1,24 @@
+query Fetch<%= classify(name) %>s($queryConfig: QueryDataConfigInput) {
+    fetch<%= classify(name) %>s(queryConfig: $queryConfig) {
+        pagination {
+            totalItems
+            pageCount
+			pageSize
+			currentPage
+        }
+        results {
+            id
+        }
+    }
+}
+
+mutation Create<%= classify(name) %>($<%= camelize(name) %>Input: <%= classify(name) %>Input!) {
+    create<%= classify(name) %>(<%= camelize(name) %>Input: $<%= camelize(name) %>Input) {
+        id
+    }
+}
+
+mutation Update<%= classify(name) %>($<%= camelize(name) %>Input: <%= classify(name) %>UpdateInput!, $<%= camelize(name) %>Id: ID!) {
+    update<%= classify(name) %>(<%= camelize(name) %>Input: $<%= camelize(name) %>Input, <%= camelize(name) %>Id: $<%= camelize(name) %>Id)
+}
+

@@ -1,0 +1,32 @@
+<form
+*ngIf="form"
+[formGroup]="form"
+class="bg-card mt-8 flex flex-col overflow-hidden rounded-2xl p-8 pb-4 shadow"
+>
+<div class="gt-xs:flex-row flex flex-col">
+    <mat-form-field
+        [ngClass]="formFieldHelpers"
+        class="gt-xs:pr-3 flex-auto"
+    >
+        <mat-label>Name</mat-label>
+        <input matInput formControlName='name'/>
+        <mat-icon
+            class="icon-size-5"
+            matSuffix
+            [svgIcon]="'heroicons_solid:user-circle'"
+        ></mat-icon>
+    </mat-form-field>
+</div>
+
+<div class="flex justify-end">
+    <button
+    class="ml-4"
+    mat-flat-button
+    (click)="submit()"
+    [color]="'primary'"
+    [disabled]="form.invalid"
+>
+    <span class="ml-2 mr-1">Ajouter</span>
+</button>
+</div>
+</form>

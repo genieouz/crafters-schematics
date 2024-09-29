@@ -1,0 +1,119 @@
+<div
+    class="absolute inset-0 flex min-w-0 flex-col overflow-y-auto"
+    cdkScrollable
+>
+    <div class="mx-auto flex w-full max-w-screen-xl flex-wrap p-6 md:p-8">
+        <!-- En-tête -->
+        <div class="mb-4 flex w-full max-w-screen-xl flex-wrap justify-between">
+            <div class="min-w-0 flex-1">
+                <!-- Titre -->
+                <div class="mt-2">
+                    <h2
+                        class="truncate text-3xl font-extrabold leading-7 tracking-tight sm:leading-10 md:text-4xl"
+                    >
+                        Fonctionnaires
+                    </h2>
+                </div>
+            </div>
+            <!-- Actions -->
+            <div class="mt-6 flex shrink-0 items-center gap-3 sm:ml-4 sm:mt-0">
+                <button
+                    class="ml-4"
+                    mat-flat-button
+                    [color]="'primary'"
+                    (click)="openForm()"
+                >
+                    <mat-icon
+                        [svgIcon]="'heroicons_outline:plus'"
+                    ></mat-icon>
+                    <span class="ml-2 mr-1">Ajouter un fonctionnaire</span>
+                </button>
+            </div>
+        </div>
+
+        <div
+            class="bg-card -mt-16 mt-8 flex flex-auto flex-col overflow-hidden rounded-2xl p-6 shadow sm:p-10"
+        >
+            <form
+                *ngIf="searchForm"
+                class="gt-xs:flex-row flex w-1/3 flex-col"
+            >
+                <mat-form-field class="gt-xs:pr-3 flex-auto">
+                    <input
+                        matInput
+                        [formControl]="searchControl"
+                        name="search"
+                        [placeholder]="'Rechercher'"
+                    />
+                    <mat-icon class="icon-size-5" matPrefix>search</mat-icon>
+                </mat-form-field>
+            </form>
+            <div class="example-table-container">
+                <table
+                    mat-table
+                    [dataSource]="dataSource"
+                    class="example-table"
+                    matSort
+                    matSortActive="name"
+                    matSortDisableClear
+                    matSortDirection="desc"
+                >
+                    <!-- Number Column -->
+
+                    <!-- Title Column -->
+                    <ng-container matColumnDef="name">
+                        <th
+                            mat-header-cell
+                            *matHeaderCellDef
+                            class="w-1/3 bg-gray-200"
+                        >
+                            Nom
+                        </th>
+                        <td mat-cell *matCellDef="let row" class="w-1/3">
+                            {{ row.name }}
+                        </td>
+                    </ng-container>
+
+                    <!-- State Column -->
+
+                    <ng-container matColumnDef="action">
+                        <th
+                            mat-header-cell
+                            *matHeaderCellDef
+                            class="w-1/12 bg-gray-200"
+                        >
+                            Action
+                        </th>
+                        <td mat-cell *matCellDef="let row" class="w-1/12">
+                            <button mat-icon-button [matMenuTriggerFor]="menu">
+                                <mat-icon
+                                    svgIcon="heroicons_mini:ellipsis-vertical"
+                                    class="text-gray-500 dark:text-gray-400"
+                                ></mat-icon>
+                            </button>
+                            <mat-menu #menu="matMenu">
+                                    <button mat-menu-item (click)="openForm(row.id)">
+                                        <mat-icon
+                                            svgIcon="mat_solid:update"
+                                        ></mat-icon>
+                                        <span>Modifier</span>
+                                    </button>
+                            </mat-menu>
+                        </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr
+                        mat-row
+                        *matRowDef="let row; columns: displayedColumns"
+                    ></tr>
+                </table>
+                <mat-paginator
+                    [pageSizeOptions]="[10, 25, 100]"
+                    [length]="totalItems || 0"
+                    aria-label=""
+                ></mat-paginator>
+            </div>
+        </div>
+    </div>
+</div>
