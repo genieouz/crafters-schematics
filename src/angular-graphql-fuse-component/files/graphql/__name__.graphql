@@ -12,6 +12,12 @@ query Fetch<%= classify(name) %>s($queryConfig: QueryDataConfigInput) {
     }
 }
 
+query Fetch<%= classify(name) %>($<%= camelize(name) %>Id: ID!) {
+    fetch<%= classify(name) %>(<%= camelize(name) %>Id: $<%= camelize(name) %>Id) {
+        id
+    }
+}
+
 mutation Create<%= classify(name) %>($<%= camelize(name) %>Input: <%= classify(name) %>Input!) {
     create<%= classify(name) %>(<%= camelize(name) %>Input: $<%= camelize(name) %>Input) {
         id

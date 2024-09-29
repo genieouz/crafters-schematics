@@ -65,7 +65,7 @@ export class <%= classify(name) %>Resolver {
 
   @Query((returns) => <%= classify(name) %>)
   fetch<%= classify(name) %>(
-    @Args({ name: '<%= camelize(name) %>Id', type: () => String }) <%= camelize(name) %>Id: string,
+    @Args({ name: '<%= camelize(name) %>Id', type: () => ID }) <%= camelize(name) %>Id: string,
   ): Promise<I<%= classify(name) %>> {
     let _id: any = <%= camelize(name) %>Id;
     return this.<%= camelize(name) %>Service.findOneOrFail({ _id });
@@ -73,7 +73,7 @@ export class <%= classify(name) %>Resolver {
 
   @Mutation((returns) => Boolean)
   delete<%= classify(name) %>(
-    @Args({ name: '<%= camelize(name) %>Id', type: () => Any }) <%= camelize(name) %>Id: string,
+    @Args({ name: '<%= camelize(name) %>Id', type: () => ID }) <%= camelize(name) %>Id: string,
   ): Promise<boolean> {
     let _id: any = <%= camelize(name) %>Id;
     return this.<%= camelize(name) %>Service.deleteOne({ _id });
@@ -81,7 +81,7 @@ export class <%= classify(name) %>Resolver {
 
   @Mutation((returns) => Boolean)
   publish<%= classify(name) %>(
-    @Args({ name: '<%= camelize(name) %>Id', type: () => Any }) <%= camelize(name) %>Id: string,
+    @Args({ name: '<%= camelize(name) %>Id', type: () => ID }) <%= camelize(name) %>Id: string,
   ): Promise<boolean> {
     let _id: any = <%= camelize(name) %>Id;
     return this.<%= camelize(name) %>Service.updateOne(
@@ -92,7 +92,7 @@ export class <%= classify(name) %>Resolver {
 
   @Mutation((returns) => Boolean)
   unPublish<%= classify(name) %>(
-    @Args({ name: '<%= camelize(name) %>Id', type: () => Any }) <%= camelize(name) %>Id: string,
+    @Args({ name: '<%= camelize(name) %>Id', type: () => ID }) <%= camelize(name) %>Id: string,
   ): Promise<boolean> {
     let _id: any = <%= camelize(name) %>Id;
     return this.<%= camelize(name) %>Service.updateOne({ _id }, { published: false });

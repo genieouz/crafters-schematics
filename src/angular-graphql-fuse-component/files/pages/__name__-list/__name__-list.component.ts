@@ -6,7 +6,7 @@ import { <%= classify(name) %>FormComponent } from '../../components/<%= dasheri
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { FormBuilder, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { <%= classify(name) %>, Fetch<%= classify(name) %>GQL, Fetch<%= classify(name) %>Query, Link<%= classify(name) %>ToCardGQL } from 'graphql/generated';
+import { <%= classify(name) %>, Fetch<%= classify(name) %>sGQL, Fetch<%= classify(name) %>sQuery } from 'graphql/generated';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -43,7 +43,7 @@ export class <%= classify(name) %>ListComponent implements AfterViewInit {
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
-    private fetch<%= classify(name) %>GQL = inject(Fetch<%= classify(name) %>GQL);
+    private fetch<%= classify(name) %>sGQL = inject(Fetch<%= classify(name) %>sGQL);
     private fb = inject(FormBuilder);
     private dialog = inject(MatDialog);
     screenWidth: number = window.innerWidth;
@@ -55,7 +55,7 @@ export class <%= classify(name) %>ListComponent implements AfterViewInit {
     totalItems: number;
 
     load<%= classify(name) %>() {
-        return this.fetch<%= classify(name) %>GQL.fetch({
+        return this.fetch<%= classify(name) %>sGQL.fetch({
             queryConfig: {
                 limit: this.paginator?.pageSize || 10,
                 page: this.paginator?.pageIndex + 1 || 0 ,
@@ -95,10 +95,10 @@ export class <%= classify(name) %>ListComponent implements AfterViewInit {
           });
     }
 
-    setupData(data: Fetch<%= classify(name) %>Query) {
-        this.<%= camelize(name) %> = data.fetch<%= camelize(name) %>.results;
+    setupData(data: Fetch<%= classify(name) %>sQuery) {
+        this.<%= camelize(name) %> = data.fetch<%= classify(name) %>s.results;
         this.dataSource = new MatTableDataSource(this.<%= camelize(name) %>);
-        this.totalItems = data.fetch<%= camelize(name) %>.pagination.totalItems;
+        this.totalItems = data.fetch<%= classify(name) %>s.pagination.totalItems;
     }
 
     openForm(id?: string): void {
