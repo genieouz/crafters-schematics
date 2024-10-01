@@ -11,7 +11,7 @@
                     <h2
                         class="truncate text-3xl font-extrabold leading-7 tracking-tight sm:leading-10 md:text-4xl"
                     >
-                        Fonctionnaires
+                        <%= classify(name) %>
                     </h2>
                 </div>
             </div>
@@ -26,7 +26,7 @@
                     <mat-icon
                         [svgIcon]="'heroicons_outline:plus'"
                     ></mat-icon>
-                    <span class="ml-2 mr-1">Ajouter un fonctionnaire</span>
+                    <span class="ml-2 mr-1">Ajouter un <%= classify(name) %></span>
                 </button>
             </div>
         </div>
