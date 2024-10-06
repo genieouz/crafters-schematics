@@ -4,8 +4,8 @@ import { Component } from '@angular/core';
   selector: 'app-<%= dasherize(name) %>-detail',
   standalone: true,
   imports: [],
-  templateUrl: './actualite-detail.page.html',
-  styleUrl: './actualite-detail.page.scss'
+  templateUrl: './<%= dasherize(name) %>-detail.page.html',
+  styleUrl: './<%= dasherize(name) %>-detail.page.scss'
 })
 export class <%= classify(name) %>DetailPage {
 
